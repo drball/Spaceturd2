@@ -2,7 +2,10 @@
 private var player : GameObject;
 
 function Start () {
-	player = GameObject.Find("Player");
+	//player = GameObject.Find("Player");
+	player = GameObject.FindGameObjectWithTag("Player");
+	
+	
 }
 
 function Update () {

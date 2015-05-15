@@ -7,7 +7,7 @@ private var ThrustParticle : ParticleSystem;
 private var fireFrom : GameObject;
 
 public var bulletDelay : float;
-public var bulletType : GameObject;
+//public var bulletType : GameObject;
 
 
 
@@ -57,8 +57,8 @@ function FixedUpdate () {
 	if(Input.GetKey("space") && (gameController.isPaused == false) && (Time.time >= nextFire) )
 	{
 		nextFire = Time.time + bulletDelay;
-		var bulletInstance = Instantiate(bulletType,Vector3(fireFrom.transform.position.x,0,fireFrom.transform.position.z), transform.rotation);
-		
+		//var bulletInstance = Instantiate(bulletType,Vector3(fireFrom.transform.position.x,0,fireFrom.transform.position.z), transform.rotation);
+		var bulletInstance : GameObject = Instantiate(Resources.Load("Bullet", GameObject),Vector3(fireFrom.transform.position.x,0,fireFrom.transform.position.z), transform.rotation);
 	}
 	
 }

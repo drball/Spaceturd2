@@ -2,8 +2,10 @@
 
 static var isPaused : boolean = false;
 
-function Start () {
 
+function Start () {
+	var playerInstance : GameObject = Instantiate(Resources.Load("Player", GameObject));
+	
 }
 
 function Update () {
