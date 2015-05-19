@@ -57,9 +57,14 @@ function FixedUpdate () {
 	if(Input.GetKey("space") && (gameController.isPaused == false) && (Time.time >= nextFire) )
 	{
 		nextFire = Time.time + bulletDelay;
-		//var bulletInstance = Instantiate(bulletType,Vector3(fireFrom.transform.position.x,0,fireFrom.transform.position.z), transform.rotation);
-		var bulletInstance : GameObject = Instantiate(Resources.Load("Bullet", GameObject),Vector3(fireFrom.transform.position.x,0,fireFrom.transform.position.z), transform.rotation);
+		var bulletInstance : GameObject = Instantiate(Resources.Load("Bullet", GameObject),
+			Vector3(fireFrom.transform.position.x,0,fireFrom.transform.position.z), 
+			transform.rotation);
 	}
+	
+	var vel = rigidbody.velocity; 
+	var speed = vel.magnitude;
+	//Debug.Log("Player speed = "+speed);
 	
 }
 
