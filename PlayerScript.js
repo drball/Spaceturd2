@@ -1,20 +1,22 @@
 ﻿#pragma strict
 public var speed : float = 40;
 public var rotationSpeed : float = 2.5;
-private var gameController : GameControllerScript;
+
 private var nextFire : float;
 private var ThrustParticle : ParticleSystem;
 private var fireFrom : GameObject;
+private var gameController : GameControllerScript;
 
 public var bulletDelay : float;
 //public var bulletType : GameObject;
-
-
 
 function Start () {
 	//ThrustParticle.enableEmission = false;
 	//ThrustParticle.emissionRate = 10;
 	fireFrom = GameObject.Find("FireFrom");
+	
+	var gameControllerObj : GameObject = GameObject.Find("GameController");
+	gameController = gameControllerObj.GetComponent(GameControllerScript);
 }
 
 function Update () {
@@ -27,19 +29,19 @@ function FixedUpdate () {
 
 	if(Input.GetKey("left") && (gameController.isPaused == false))
 	{
-		rigidbody.AddRelativeTorque (0,-rotationSpeed,0);
+		GetComponent.<Rigidbody>().AddRelativeTorque (0,-rotationSpeed,0);
 
 
 	} else if(Input.GetKey("right") && (gameController.isPaused == false))
 	{
-		rigidbody.AddRelativeTorque (0,rotationSpeed,0);
+		GetComponent.<Rigidbody>().AddRelativeTorque (0,rotationSpeed,0);
 
 	} 
 	
 	if(Input.GetKey("up") && (gameController.isPaused == false))
 	{
 
-		rigidbody.AddRelativeForce (Vector3.forward * speed);
+		GetComponent.<Rigidbody>().AddRelativeForce (Vector3.forward * speed);
 		
 		//ThrustParticle.enableEmission = true;
 		//ThrustParticle.emissionRate = 55;
@@ -47,7 +49,7 @@ function FixedUpdate () {
 	} else if (Input.GetKey("down") && (gameController.isPaused == false))
 	{ 
 		
-		rigidbody.AddRelativeForce (Vector3.back * speed);
+		GetComponent.<Rigidbody>().AddRelativeForce (Vector3.back * speed);
 	}else {
 		//ThrustParticle.enableEmission = false;
 		//ThrustParticle.emissionRate = 10;
@@ -62,7 +64,7 @@ function FixedUpdate () {
 			transform.rotation);
 	}
 	
-	var vel = rigidbody.velocity; 
+	var vel = GetComponent.<Rigidbody>().velocity; 
 	var speed = vel.magnitude;
 	//Debug.Log("Player speed = "+speed);
 	
@@ -77,7 +79,13 @@ function OnTriggerEnter(other: Collider)
 	    return;
 	}
 
-	
+	if (other.name == "Trigger1")
+	{
+	    Debug.Log("Have hit trigger1 yeah!");
+	  
+	    gameController.ShowDialogue("hello");
+	    return;
+	}
 
 }
 

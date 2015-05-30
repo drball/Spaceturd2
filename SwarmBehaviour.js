@@ -24,18 +24,18 @@ function Update ()
     if(distance < lookAtDistance)
     {
 	    isItAttacking = false;
-	    renderer.material.color = Color.yellow;
+	    GetComponent.<Renderer>().material.color = Color.yellow;
 	    lookAtTarget();
 	
     }   
     if(distance > lookAtDistance)
     {
-    	renderer.material.color = Color.green; 
+    	GetComponent.<Renderer>().material.color = Color.green; 
     }
     if(distance < attackRange)
     {
 		isItAttacking = true;
-    	renderer.material.color = Color.red;
+    	GetComponent.<Renderer>().material.color = Color.red;
     	
     	if(distance >= minDistance)
     	{
@@ -45,7 +45,7 @@ function Update ()
     }
     if(isItAttacking)
     {
-		renderer.material.color = Color.red;
+		GetComponent.<Renderer>().material.color = Color.red;
     }
 }
  

@@ -16,7 +16,7 @@ function Update () {
 	
 	var camerapos = transform.position - player.transform.position;
 	//Debug.Log(camerapos);
-	//Debug.Log("player speed = "+player.speed);
+	//Debug.Log("player s.activespeed = "+player.speed);
 }
 
 

@@ -22,10 +22,10 @@ function Update () {
 function hit(damageAmt : int){
 	Debug.Log("Enemy is hit");
 	
-	vfx.renderer.material.color = Color.red;
+	vfx.GetComponent.<Renderer>().material.color = Color.red;
 	//Debug.Log("vfx = "+vfx);
 	
 	yield WaitForSeconds (.1);
-	vfx.renderer.material.color = Color.white;
+	vfx.GetComponent.<Renderer>().material.color = Color.white;
 	
 }

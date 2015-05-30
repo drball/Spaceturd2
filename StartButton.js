@@ -4,15 +4,15 @@ public var overColor: Color =  Color(0.2, 0.3, 0.4, 0.5);
 private var normalColor : Color;
  
 function Awake () {
-    normalColor = guiTexture.color;
+    normalColor = GetComponent.<GUITexture>().color;
 }
  
 function OnMouseEnter () {
-    guiTexture.color = overColor;
+    GetComponent.<GUITexture>().color = overColor;
 }
  
 function OnMouseExit () {
-    guiTexture.color = normalColor;
+    GetComponent.<GUITexture>().color = normalColor;
 }
 
 function OnMouseDown () {

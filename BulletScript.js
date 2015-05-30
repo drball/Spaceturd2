@@ -4,12 +4,12 @@ private var speed : float = 10;
 public var explosion : GameObject;
 
 function Start () {
-	
+	Destroy(gameObject,2);
 }
 
 function Update () {
 	//transform.position.z += 4;
-	rigidbody.velocity = transform.forward * speed;
+	GetComponent.<Rigidbody>().velocity = transform.forward * speed;
 }
 
 function fixedUpdate() {
