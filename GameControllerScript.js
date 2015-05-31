@@ -18,7 +18,10 @@ function Start () {
 		Resources.Load("DialogueCanvas", Canvas));
 
 				
-	 DialogueCanvas2.GetComponent(CanvasGroup).alpha = 0.1;
+	 DialogueCanvas2.GetComponent(CanvasGroup).alpha = 0;
+	 
+	 yield WaitForSeconds (2);
+	 ShowDialogue("this is the start");
 			
 }
 
@@ -59,6 +62,6 @@ function ShowDialogue (DialogueText : String) {
 	
 	yield WaitForSeconds (3);
 	
-	DialogueInstance.GetComponent(CanvasGroup).alpha = 0.1;
+	DialogueInstance.GetComponent(CanvasGroup).alpha = 0;
 	
 }

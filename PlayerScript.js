@@ -81,9 +81,8 @@ function OnTriggerEnter(other: Collider)
 
 	if (other.name == "Trigger1")
 	{
-	    Debug.Log("Have hit trigger1 yeah!");
 	  
-	    gameController.ShowDialogue("hello");
+	    gameController.ShowDialogue("Have hit trigger1 yeah!");
 	    return;
 	}
 
