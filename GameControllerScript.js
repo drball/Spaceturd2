@@ -11,7 +11,7 @@ function Start () {
 	playerSpawn = GameObject.Find("PlayerSpawn");
 	var playerInstance : GameObject = Instantiate(
 		Resources.Load("Player", GameObject),
-		Vector3(playerSpawn.transform.position.x, 0, playerSpawn.transform.position.y), 
+		Vector3(playerSpawn.transform.position.x, 0, playerSpawn.transform.position.z), 
 		playerSpawn.transform.rotation);
 		
 	var DialogueCanvas2 : Canvas = Instantiate(
@@ -64,4 +64,10 @@ function ShowDialogue (DialogueText : String) {
 	
 	DialogueInstance.GetComponent(CanvasGroup).alpha = 0;
 	
+}
+
+function GoalCompleted () {
+	ShowDialogue("You've done it!");
+	
+	yield WaitForSeconds (2);
 }
