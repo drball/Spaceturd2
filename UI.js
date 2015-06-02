@@ -14,3 +14,7 @@ function KeepPlaying() {
 	GoalCompleteCanvas.GetComponent(Canvas).enabled = false;
 }
 
+function ToMenu() {
+	Application.LoadLevel ("menu");
+}
+
