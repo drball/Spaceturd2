@@ -3,7 +3,7 @@ import UnityEngine.UI;
 
 static var isPaused : boolean = false;
 private var playerSpawn : GameObject;
-private var DialogueCanvas2 : Canvas;
+private var DialogueCanvas : Canvas;
 private var DialogueTextbox : Text;
 
 function Start () {
@@ -11,14 +11,15 @@ function Start () {
 	playerSpawn = GameObject.Find("PlayerSpawn");
 	var playerInstance : GameObject = Instantiate(
 		Resources.Load("Player", GameObject),
-		Vector3(playerSpawn.transform.position.x, 0, playerSpawn.transform.position.z), 
+		Vector3(playerSpawn.transform.position.x, 0, playerSpawn.transform.position.y), 
 		playerSpawn.transform.rotation);
 		
-	var DialogueCanvas2 : Canvas = Instantiate(
+	var DialogueCanvas : Canvas = Instantiate(
 		Resources.Load("DialogueCanvas", Canvas));
 
 				
-	 DialogueCanvas2.GetComponent(CanvasGroup).alpha = 0;
+	 //DialogueCanvas.GetComponent(CanvasGroup).alpha = 0;
+	 DialogueCanvas.GetComponent(Canvas).enabled = false;
 	 
 	 yield WaitForSeconds (2);
 	 ShowDialogue("this is the start");
@@ -58,11 +59,11 @@ function ShowDialogue (DialogueText : String) {
 	GameObject.Find("DialogueTextBox").GetComponent.<Text>().text = DialogueText;
 	
 	Debug.Log("say "+DialogueText);
-	DialogueInstance.GetComponent(CanvasGroup).alpha = 1;
+	DialogueInstance.GetComponent(Canvas).enabled = true;
 	
 	yield WaitForSeconds (3);
 	
-	DialogueInstance.GetComponent(CanvasGroup).alpha = 0;
+	DialogueInstance.GetComponent(Canvas).enabled = false;
 	
 }
 
@@ -70,4 +71,6 @@ function GoalCompleted () {
 	ShowDialogue("You've done it!");
 	
 	yield WaitForSeconds (2);
+	
+	//--show the end screen ui
 }
