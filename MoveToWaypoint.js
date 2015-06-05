@@ -21,7 +21,7 @@ function Start () {
 function Update () {
 	distance = Vector3.Distance(currentTarget.transform.position, transform.position);
 	
-	if(distance > 10)
+	if(distance > 2)
     {
 
 	    lookAtTarget();

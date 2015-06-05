@@ -3,20 +3,33 @@ public var speed : float = 40;
 public var rotationSpeed : float = 2.5;
 
 private var nextFire : float;
-private var ThrustParticle : ParticleSystem;
+private var ThrustParticle : GameObject;
+private var ThrustParticleFar : GameObject;
 private var fireFrom : GameObject;
 private var gameController : GameControllerScript;
+
+private var Thrust : GameObject;
 
 public var bulletDelay : float;
 //public var bulletType : GameObject;
 
 function Start () {
-	//ThrustParticle.enableEmission = false;
-	//ThrustParticle.emissionRate = 10;
+	
+
 	fireFrom = GameObject.Find("FireFrom");
 	
 	var gameControllerObj : GameObject = GameObject.Find("GameController");
 	gameController = gameControllerObj.GetComponent(GameControllerScript);
+	
+	Thrust = GameObject.Find("Thrust");
+	Thrust.active = false;
+	
+	ThrustParticle = GameObject.Find("Particle1");
+	ThrustParticleFar = GameObject.Find("ParticleFar");
+	
+//	ThrustParticle.GetComponent.<ParticleSystem>().Stop();
+//	ThrustParticleFar.GetComponent.<ParticleSystem>().Stop();
+
 }
 
 function Update () {
@@ -42,17 +55,24 @@ function FixedUpdate () {
 	{
 
 		GetComponent.<Rigidbody>().AddRelativeForce (Vector3.forward * speed);
+		Thrust.active = true;
 		
-		//ThrustParticle.enableEmission = true;
-		//ThrustParticle.emissionRate = 55;
+		//--start the particles (if they're not already playing)
+		if(!ThrustParticle.GetComponent.<ParticleSystem>().isPlaying){
+//			ThrustParticle.GetComponent.<ParticleSystem>().Play();
+//			ThrustParticleFar.GetComponent.<ParticleSystem>().Play();
+		}
+		
+		
 
 	} else if (Input.GetKey("down") && (gameController.isPaused == false))
 	{ 
 		
 		GetComponent.<Rigidbody>().AddRelativeForce (Vector3.back * speed);
 	}else {
-		//ThrustParticle.enableEmission = false;
-		//ThrustParticle.emissionRate = 10;
+//		ThrustParticle.GetComponent.<ParticleSystem>().Stop();
+//		ThrustParticleFar.GetComponent.<ParticleSystem>().Stop();
+		Thrust.active = false;
 	}
 	
 	//FIRE WEAPON
