@@ -98,7 +98,9 @@ function hit(damageAmt : int){
 		
 		var exp11 = Instantiate(Resources.Load("Explosion", GameObject), exp5helper.transform.position, transform.rotation);
 
-		yield WaitForSeconds (.1);
+		Destroy(vfx);
+		
+		yield WaitForSeconds (.25);
 		
 		var exp12 = Instantiate(Resources.Load("Explosion", GameObject), exp3helper.transform.position, transform.rotation);
 
@@ -115,7 +117,7 @@ function hit(damageAmt : int){
 		Destroy(exp13,2);
 		
 		
-		//Destroy(gameObject,1);
+		Destroy(gameObject,3);
 		
 	}
 	
