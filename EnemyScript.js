@@ -1,16 +1,22 @@
 ﻿#pragma strict
 
 public var minPlayerDistance : int;
-public var health : int = 2;
+public var startHealth : int = 2;
+public var health : int = startHealth;
 
 private var player : GameObject;
-private var target : Transform;
 private var vfx : GameObject;
+
+private var restartPoint : Transform;
+private var target : Transform;
+
 private var defaultMat;
 private var isAlive : boolean = true;
 private var distanceToPlayer : float;
+
 private var enemyMovementScript : MoveToWaypoint;
 private var gameController : GameControllerScript;
+
 private var levelController : Component;
 
 
@@ -26,7 +32,11 @@ function Start () {
 	player = GameObject.Find("Player");
 	target = player.transform;	
 	
+	restartPoint = GameObject.Find("EnemySpawnHelper").transform;
+	
 	vfx = GameObject.Find("EnemyVFX");
+	
+	enemyMovementScript = GetComponent(MoveToWaypoint);
 	
 	defaultMat = vfx.GetComponent.<Renderer>().material.color;
 }
@@ -50,7 +60,7 @@ function hit(damageAmt : int){
 	
 	if((health <= 0) && (isAlive == true) ){
 		//--die
-		enemyMovementScript.moving = false;
+		enemyMovementScript.SendMessage("stopMoving");
 		isAlive = false;
 		
 		var exp1helper : GameObject = GameObject.Find("Exp1Helper");
@@ -140,4 +150,10 @@ function hit(damageAmt : int){
 	
 }
 
-
+function Restart(){
+	gameObject.transform.position = restartPoint.position;
+	gameObject.transform.rotation = restartPoint.rotation;
+	isAlive = true;
+	health = startHealth;
+	enemyMovementScript.SendMessage("startMoving");
+}

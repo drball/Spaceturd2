@@ -14,8 +14,9 @@ function Start () {
 	goalCompleteCanvas = GameObject.Find("GoalCompleteCanvas");
 	goalCompleteCanvas.GetComponent(Canvas).enabled = false;
 
+
 	enemy = GameObject.Find("EnemyTurd");
-	//enemyScript = enemy.GetComponent(EnemyScript);
+	enemyScript = enemy.GetComponent(EnemyScript);
 	
 //	yield WaitForSeconds (2);
 //	gameController.ShowDialogue("this is the start of level 1");
@@ -26,7 +27,9 @@ function StartGame() {
 	
 	//--activate the enemy
 	enemy.SetActive(true);
-	enemy.transform.position = 
+	enemyScript.SendMessage("Restart");
+	
+	
 	//enemyScript.SendMessage("Restart");
 }
 

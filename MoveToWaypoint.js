@@ -7,13 +7,13 @@ public var target4 : GameObject;
 public var target5 : GameObject;
 public var target6 : GameObject;
 
-public var moveSpeed : float = 5.0f;
+public var moveSpeed : float = 1.5f;
 public var rotateSpeed : float = 6.0f;
 public var distanceToTarget : float;
 public var currentTargetNum : int = 1;
 
 private var currentTarget : GameObject;
-static var moving : boolean = false;
+static var moving : boolean = true;
 
 function Start () {
 	currentTarget = target1;
@@ -67,4 +67,12 @@ function lookAtTarget ()
 function moveToTarget ()
 {
     transform.Translate(Vector3.forward * moveSpeed * Time.deltaTime);
+}
+
+function startMoving() {
+	moving = true;
+}
+
+function stopMoving() {
+	moving = false;
 }
