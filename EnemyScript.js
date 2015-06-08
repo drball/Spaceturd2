@@ -10,9 +10,19 @@ private var defaultMat;
 private var isAlive : boolean = true;
 private var distanceToPlayer : float;
 private var enemyMovementScript : MoveToWaypoint;
+private var gameController : GameControllerScript;
+private var levelController : Component;
 
 
 function Start () {
+
+	//--get reference to gamecomtroller object so we can call functions
+	var gameControllerObj : GameObject = GameObject.Find("GameController");
+	gameController = gameControllerObj.GetComponent(GameControllerScript);
+	
+	//--get reference to levelController object so we can call local functions
+	levelController = GameObject.Find("LevelController").GetComponent(Level1Script);
+	
 	player = GameObject.Find("Player");
 	target = player.transform;	
 	
@@ -50,7 +60,7 @@ function hit(damageAmt : int){
 		var exp5helper : GameObject = GameObject.Find("Exp5Helper");
 		var exp6helper : GameObject = GameObject.Find("Exp6Helper");
 		
-		var exp = Instantiate(Resources.Load("Explosion", GameObject), exp1helper.transform.position, transform.rotation);
+		var exp1 = Instantiate(Resources.Load("Explosion", GameObject), exp1helper.transform.position, transform.rotation);
 
 		yield WaitForSeconds (.25);
 		
@@ -72,7 +82,7 @@ function hit(damageAmt : int){
 		
 		var exp6 = Instantiate(Resources.Load("Explosion", GameObject), exp6helper.transform.position, transform.rotation);
 
-		Destroy(exp,2);
+		Destroy(exp1,2);
 		Destroy(exp2,2);
 		Destroy(exp3,2);
 		Destroy(exp4,2);
@@ -98,7 +108,9 @@ function hit(damageAmt : int){
 		
 		var exp11 = Instantiate(Resources.Load("Explosion", GameObject), exp5helper.transform.position, transform.rotation);
 
-		Destroy(vfx);
+		//--destroy the vfx subobject
+		//Destroy(vfx);
+		vfx.SetActive(false);
 		
 		yield WaitForSeconds (.25);
 		
@@ -108,17 +120,24 @@ function hit(damageAmt : int){
 		
 		var exp13 = Instantiate(Resources.Load("Explosion", GameObject), exp1helper.transform.position, transform.rotation);
 
-		Destroy(exp7,2);
-		Destroy(exp8,2);
-		Destroy(exp9,2);
-		Destroy(exp10,2);
-		Destroy(exp11,2);
-		Destroy(exp12,2);
-		Destroy(exp13,2);
+		Destroy(exp7);
+		Destroy(exp8);
+		Destroy(exp9);
+		Destroy(exp10);
+		Destroy(exp11);
+		Destroy(exp12,1);
+		Destroy(exp13,1);
 		
+		yield WaitForSeconds (.25);
 		
-		Destroy(gameObject,3);
+		//--hide the enemy
+		gameObject.SetActive(false);
+		vfx.SetActive(true); //--ready for enemy to be enabled again
+		
+		levelController.SendMessage("GoalCompleted");
 		
 	}
 	
 }
+
+

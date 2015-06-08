@@ -7,6 +7,7 @@ private var DialogueTextbox : Text;
 
 function Start () {
 		
+	//--create the dialogue, but initially disable it
 	var DialogueCanvas : Canvas = Instantiate(
 		Resources.Load("DialogueCanvas", Canvas));
 
@@ -58,10 +59,3 @@ function ShowDialogue (DialogueText : String) {
 	
 }
 
-function GoalCompleted () {
-	ShowDialogue("You've done it!");
-	
-	yield WaitForSeconds (2);
-	
-	//--show the end screen ui
-}

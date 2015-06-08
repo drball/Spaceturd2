@@ -33,7 +33,7 @@ function OnTriggerEnter(other: Collider)
 		Debug.Log("Hit blue");
 		return;
 	}
-	if(other.name == "Enemy-turd")
+	if(other.name == "EnemyTurd")
 	{
 		other.SendMessage("hit",5);
 	}

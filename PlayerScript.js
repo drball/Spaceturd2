@@ -18,6 +18,7 @@ function Start () {
 
 	fireFrom = GameObject.Find("FireFrom");
 	
+	//--get reference to gamecomtroller object so we can call functions
 	var gameControllerObj : GameObject = GameObject.Find("GameController");
 	gameController = gameControllerObj.GetComponent(GameControllerScript);
 	
