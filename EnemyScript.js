@@ -63,6 +63,10 @@ function hit(damageAmt : int){
 		enemyMovementScript.SendMessage("stopMoving");
 		isAlive = false;
 		
+		levelController.SendMessage("GoalCompleted");
+		
+		
+		
 		var exp1helper : GameObject = GameObject.Find("Exp1Helper");
 		var exp2helper : GameObject = GameObject.Find("Exp2Helper");
 		var exp3helper : GameObject = GameObject.Find("Exp3Helper");
@@ -144,7 +148,8 @@ function hit(damageAmt : int){
 		gameObject.SetActive(false);
 		vfx.SetActive(true); //--ready for enemy to be enabled again
 		
-		levelController.SendMessage("GoalCompleted");
+
+		
 		
 	}
 	

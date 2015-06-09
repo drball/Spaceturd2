@@ -12,10 +12,7 @@ function Start () {
 		Resources.Load("DialogueCanvas", Canvas));
 
 	 DialogueCanvas.GetComponent(Canvas).enabled = false;
-	 
-	 yield WaitForSeconds (2);
-	 ShowDialogue("this is the start");
-			
+
 }
 
 function Update () {

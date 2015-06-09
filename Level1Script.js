@@ -4,6 +4,7 @@ private var gameController : GameControllerScript;
 private var goalCompleteCanvas : GameObject;
 private var enemy : GameObject;
 private var enemyScript : Component;
+private var timesPlayed : int = 0;
 
 function Start () {
 
@@ -18,8 +19,8 @@ function Start () {
 	enemy = GameObject.Find("EnemyTurd");
 	enemyScript = enemy.GetComponent(EnemyScript);
 	
-//	yield WaitForSeconds (2);
-//	gameController.ShowDialogue("this is the start of level 1");
+	StartGame();
+	
 }
 
 function StartGame() {
@@ -29,8 +30,9 @@ function StartGame() {
 	enemy.SetActive(true);
 	enemyScript.SendMessage("Restart");
 	
-	
-	//enemyScript.SendMessage("Restart");
+	yield WaitForSeconds (2);
+	gameController.ShowDialogue("We believe the giant turd came from the galactic rectum of Annus IX. God speed Major Plumber!");
+
 }
 
 function Update () {
@@ -38,7 +40,14 @@ function Update () {
 }
 
 function GoalCompleted () {
-	gameController.ShowDialogue("You've done it!");
+
+	timesPlayed++;
+
+	gameController.ShowDialogue("The turd is breaking up!");
+
+	yield WaitForSeconds (3);
+	
+	gameController.ShowDialogue("Well done Major, you’ve saved us all!");
 	
 	yield WaitForSeconds (3);
 	
