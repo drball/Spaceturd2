@@ -31,7 +31,11 @@ function StartGame() {
 	enemyScript.SendMessage("Restart");
 	
 	yield WaitForSeconds (2);
-	gameController.ShowDialogue("We believe the giant turd came from the galactic rectum of Annus IX. God speed Major Plumber!");
+	
+	if (timesPlayed == 0){
+	
+	} else if (timesPlayed > 0)
+	gameController.ShowDialogue("There's another giant turd on the rampage. Sorry Major, you have the crappest job in the world");
 
 }
 
@@ -66,4 +70,6 @@ function ToMenu() {
 	//--when button pressed
 	Application.LoadLevel ("menu");
 }
+
+
 
