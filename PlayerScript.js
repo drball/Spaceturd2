@@ -100,16 +100,17 @@ function OnTriggerEnter(other: Collider)
 	    return;
 	}
 
-	if (other.tag == "Portal")
-	{
-	  
-	    gameController.ShowDialogue("Have hit portal yeah!");
-	    
-	    //--get a variable from the portal for where to go next
-	    
-	    //--make portal animate
-	    return;
-	}
+//	if (other.tag == "Portal")
+//	{
+//	  
+//	    gameController.ShowDialogue("Have hit portal yeah!");
+//	    
+//	    //--get a variable from the portal for where to go next
+//	    Debug.Log("going to.... ");
+//	    
+//	    //--make portal animate
+//	    return;
+//	}
 
 }
 
