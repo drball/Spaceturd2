@@ -1,8 +1,8 @@
 ﻿#pragma strict
 
 var fadeTexture : Texture2D;
-var fadeSpeed = 0.2;
-var drawDepth = -1000;
+private var fadeSpeed = 0.5;
+private var drawDepth = -1000;
 
 private var alpha = 1.0; 
 private var fadeDir = -1;
@@ -21,7 +21,8 @@ function OnGUI(){
 
 public function BeginFade(direction : int){
 	fadeDir = direction;
-	return (fadeSpeed);
+	Debug.Log("fadespeed = "+fadeSpeed);
+	return fadeSpeed;
 }
 
 function OnLevelWasLoaded (level : int) {

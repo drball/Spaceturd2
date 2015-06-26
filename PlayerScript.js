@@ -31,6 +31,9 @@ function Start () {
 //	ThrustParticle.GetComponent.<ParticleSystem>().Stop();
 //	ThrustParticleFar.GetComponent.<ParticleSystem>().Stop();
 
+	// Accelerate out of the last portal
+	GetComponent.<Rigidbody>().AddRelativeForce(Vector3.forward * (speed/2), ForceMode.Impulse);
+
 }
 
 function Update () {
