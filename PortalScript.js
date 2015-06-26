@@ -1,10 +1,13 @@
 ﻿#pragma strict
 public var destination : String;
+public var activePortal : boolean = true;
+
 private var portalRing : Transform;
 private var portalShockwave : Transform;
 private var player : GameObject;
 private var fadeTime : float;
 private var fadingScript : FadingScript;
+
 
 function Start () {
 	portalRing = transform.Find("SpacePortal__ring"); //--have to search the transform for subobjects
@@ -16,12 +19,8 @@ function Start () {
 	fadingScript = gameControllerObj.GetComponent(FadingScript);
 }
 
-function Update () {
-	Debug.Log(Time.time);
-}
-
 function OnTriggerEnter(other: Collider) {
-	if ((other.tag == "Player") && Time.time > 2){
+	if ((other.tag == "Player") && (Time.time > 2) && (activePortal == true)){
 		ActivateAnim();		
 	}
 }

@@ -2,6 +2,7 @@
 //--shows dialogue when player collides
 private var gameController : GameControllerScript;
 
+public var isPlayer : boolean = false; //--is it the player saying this? 
 public var dialogue : String;
 
 function Start () {
@@ -20,9 +21,14 @@ function OnTriggerEnter(other: Collider)
 
 	if (other.tag == "Player")
 	{
-	  
-	    gameController.ShowDialogue(dialogue);
-	    return;
+	    if(isPlayer == true) {
+	    	gameController.ShowPlayerDialogue(dialogue);
+	    	return;
+	    }else {
+	    	gameController.ShowDialogue(dialogue);
+	    	return;
+	    }
+	    
 	}
 
 }

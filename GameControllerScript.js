@@ -42,12 +42,26 @@ function Update () {
 	}
 }
 
-function ShowDialogue (DialogueText : String) {
+function ShowDialogue (dialogueText : String) {
 	
 	var DialogueInstance = GameObject.FindGameObjectWithTag("Dialogue");
-	GameObject.Find("DialogueTextBox").GetComponent.<Text>().text = DialogueText;
+	GameObject.Find("DialogueTextBox").GetComponent.<Text>().text = dialogueText;
 	
-	Debug.Log("say "+DialogueText);
+	DialogueInstance.GetComponent(Canvas).enabled = true;
+	
+	yield WaitForSeconds (3);
+	
+	DialogueInstance.GetComponent(Canvas).enabled = false;
+	
+}
+
+function ShowPlayerDialogue (dialogueText : String) {
+	
+	var DialogueInstance = GameObject.FindGameObjectWithTag("Dialogue");
+	GameObject.Find("DialogueTextBox").GetComponent.<Text>().text = dialogueText;
+	
+	Debug.Log("Player says this!");
+	
 	DialogueInstance.GetComponent(Canvas).enabled = true;
 	
 	yield WaitForSeconds (3);
