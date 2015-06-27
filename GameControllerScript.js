@@ -43,11 +43,17 @@ function Update () {
 }
 
 function ShowDialogue (dialogueText : String) {
+
+	Debug.Log("Show dialogue");
 	
 	var DialogueInstance = GameObject.FindGameObjectWithTag("Dialogue");
 	GameObject.Find("DialogueTextBox").GetComponent.<Text>().text = dialogueText;
 	
 	DialogueInstance.GetComponent(Canvas).enabled = true;
+	
+	//--show correct avatar
+	GameObject.Find("AvatarDefault").GetComponent.<Image>().enabled = true;
+	GameObject.Find("AvatarPlayer").GetComponent.<Image>().enabled = false;
 	
 	yield WaitForSeconds (3);
 	
@@ -56,13 +62,17 @@ function ShowDialogue (dialogueText : String) {
 }
 
 function ShowPlayerDialogue (dialogueText : String) {
+
+	Debug.Log("Show player dialogue");
 	
 	var DialogueInstance = GameObject.FindGameObjectWithTag("Dialogue");
 	GameObject.Find("DialogueTextBox").GetComponent.<Text>().text = dialogueText;
 	
-	Debug.Log("Player says this!");
-	
 	DialogueInstance.GetComponent(Canvas).enabled = true;
+
+	//--show correct avatar
+	GameObject.Find("AvatarDefault").GetComponent.<Image>().enabled = false;
+	GameObject.Find("AvatarPlayer").GetComponent.<Image>().enabled = true;
 	
 	yield WaitForSeconds (3);
 	
