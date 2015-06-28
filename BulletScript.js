@@ -22,20 +22,20 @@ function OnTriggerEnter(other: Collider)
 {
 	//Debug.Log("laser touched "+other);
 	
-	if (other.tag == "Player")
+	if(other.tag == "Player")
 	{
-	    //Debug.Log("hit player");
-	    return;
-	}
-	
-	if(other.gameObject.name == "Asteroid-blue")
-	{
-		Debug.Log("Hit blue");
+		return;
+	} else if(other.tag == "Collectable") {
 		return;
 	}
+	
 	if(other.name == "EnemyTurd")
 	{
-		other.SendMessage("hit",5);
+		other.SendMessage("hit",1);
+		
+	} else if(other.tag == "Destructable") 
+	{
+		other.SendMessage("hit",1);
 	}
 	var exp = Instantiate(explosion, transform.position, transform.rotation);
 	Destroy(gameObject);

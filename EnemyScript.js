@@ -39,6 +39,8 @@ function Start () {
 	enemyMovementScript = GetComponent(MoveToWaypoint);
 	
 	defaultMat = vfx.GetComponent.<Renderer>().material.color;
+	
+	InvokeRepeating("SpawnDropping", 1, 4); //--spawn a new dropping every few seconds
 }
 
 function Update () {
@@ -64,8 +66,6 @@ function hit(damageAmt : int){
 		isAlive = false;
 		
 		levelController.SendMessage("GoalCompleted");
-		
-		
 		
 		var exp1helper : GameObject = GameObject.Find("Exp1Helper");
 		var exp2helper : GameObject = GameObject.Find("Exp2Helper");
@@ -147,9 +147,7 @@ function hit(damageAmt : int){
 		//--hide the enemy
 		gameObject.SetActive(false);
 		vfx.SetActive(true); //--ready for enemy to be enabled again
-		
 
-		
 		
 	}
 	
@@ -161,4 +159,12 @@ function Restart(){
 	isAlive = true;
 	health = startHealth;
 	enemyMovementScript.SendMessage("startMoving");
+}
+
+
+
+function SpawnDropping () {
+
+	Instantiate(Resources.Load("Dropping", GameObject), transform.position, transform.rotation);
+
 }

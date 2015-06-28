@@ -1,6 +1,7 @@
 ﻿#pragma strict
 
 private var gameController : GameControllerScript;
+private var isCollectable : boolean = true;
 var vfxObj : GameObject;
 
 
@@ -16,7 +17,7 @@ function Start () {
 function OnTriggerEnter(other: Collider) 
 {
 
-	if (other.tag == "Player")
+	if (other.tag == "Player" && isCollectable)
 	{
 	    gameController.IncreaseScore(1);
 	    //vfxObj.SetActive(false);
@@ -28,6 +29,7 @@ function OnTriggerEnter(other: Collider)
 		Destroy(sparkInstance,1);
 		
 	    vfxObj.SetActive(false);
+	    isCollectable = false;
 	    
 	    yield WaitForSeconds (10);
 	    
@@ -44,6 +46,7 @@ function OnTriggerEnter(other: Collider)
 	        Debug.Log("blinking = "+blinkingAmt);
 	    }
 	    vfxObj.GetComponent.<Renderer>().enabled = true;
+	    isCollectable = true;
 	    
 	}
 
