@@ -5,6 +5,8 @@ static var isPaused : boolean = false;
 private var DialogueCanvas : Canvas;
 private var DialogueTextbox : Text;
 
+public var score = 0;
+
 function Start () {
 		
 	//--create the dialogue, but initially disable it
@@ -78,5 +80,10 @@ function ShowPlayerDialogue (dialogueText : String) {
 	
 	DialogueInstance.GetComponent(Canvas).enabled = false;
 	
+}
+
+function IncreaseScore(amt : int) {
+	score += amt;
+	Debug.Log("Score is "+score);
 }
 

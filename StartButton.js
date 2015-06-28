@@ -17,5 +17,5 @@ function OnMouseExit () {
 
 function OnMouseDown () {
 	Debug.Log("Pressed to start game");
-	Application.LoadLevel("intro");
+	
 }
