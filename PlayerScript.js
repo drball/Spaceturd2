@@ -62,14 +62,6 @@ function FixedUpdate () {
 		GetComponent.<Rigidbody>().AddRelativeForce (Vector3.forward * speed);
 		//Thrust.active = true;
 		ParticleTrail.GetComponent.<ParticleSystem>().emissionRate = 100;
-		
-		//--start the particles (if they're not already playing)
-		if(!ThrustParticle.GetComponent.<ParticleSystem>().isPlaying){
-//			ThrustParticle.GetComponent.<ParticleSystem>().Play();
-//			ThrustParticleFar.GetComponent.<ParticleSystem>().Play();
-		}
-		
-		
 
 	} else if (Input.GetKey("down") && (gameController.isPaused == false))
 	{ 
