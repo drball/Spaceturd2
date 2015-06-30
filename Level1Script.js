@@ -36,12 +36,16 @@ function StartGame() {
 		gameController.ShowDialogue("We believe the giant turd came from the galactic rectum of Annus IX. God speed Major Plumber!");
 
 	} else if (timesPlayed > 1){
-		gameController.ShowDialogue("There's another giant turd on the rampage. Sorry Major, you have the crappest job in the world");
+		gameController.ShowDialogue("There's another giant turd on the rampage. Sorry Major, you have the crappest job in the world.");
 
 	} else if (timesPlayed > 2){
 		gameController.ShowDialogue("Another giant turd has arrived. Do your thing Major!");
 
 		gameController.ShowPlayerDialogue("I'm getting sick of this shitty job. If only there was a way to escape...");
+
+	} else if (timesPlayed > 3){
+
+		gameController.ShowPlayerDialogue("What a shit day I'm having. I want to get out of here.");
 
 	}
 	
