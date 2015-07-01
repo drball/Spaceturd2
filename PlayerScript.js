@@ -85,8 +85,8 @@ function FixedUpdate () {
 				transform.rotation);
 		}
 		
-		var vel = GetComponent.<Rigidbody>().velocity; 
-		var speed = vel.magnitude;
+		//var vel = GetComponent.<Rigidbody>().velocity; 
+		//var speed = vel.magnitude;
 	}
 
 	
