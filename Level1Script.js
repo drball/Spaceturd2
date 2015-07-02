@@ -5,6 +5,7 @@ private var goalCompleteCanvas : GameObject;
 private var enemy : GameObject;
 private var enemyScript : Component;
 private var timesPlayed : int = 0;
+private var cameraScript : CameraTrackPlayer;
 
 function Start () {
 
@@ -13,22 +14,28 @@ function Start () {
 	gameController = gameControllerObj.GetComponent(GameControllerScript);
 	
 	goalCompleteCanvas = GameObject.Find("GoalCompleteCanvas");
-	goalCompleteCanvas.GetComponent(Canvas).enabled = false;
-
+	//goalCompleteCanvas.GetComponent(Canvas).enabled = false;
+	goalCompleteCanvas.SetActive(false);
 
 	enemy = GameObject.Find("EnemyTurd");
 	enemyScript = enemy.GetComponent(EnemyScript);
+	
+	cameraScript = GameObject.Find("Main Camera").GetComponent.<CameraTrackPlayer>();
 	
 	StartGame();
 	
 }
 
 function StartGame() {
-	goalCompleteCanvas.GetComponent(Canvas).enabled = false;
+	//goalCompleteCanvas.GetComponent(Canvas).enabled = false;
+	goalCompleteCanvas.SetActive(false);
 	
 	//--activate the enemy
 	enemy.SetActive(true);
 	enemyScript.SendMessage("Restart");
+	
+	//--reset the camera script
+	cameraScript.Start();
 	
 	yield WaitForSeconds (2);
 	
@@ -68,7 +75,8 @@ function GoalCompleted () {
 	yield WaitForSeconds (3);
 	
 	//--show the end screen ui
-	goalCompleteCanvas.GetComponent(Canvas).enabled = true;
+	//goalCompleteCanvas.GetComponent(Canvas).enabled = true;
+	goalCompleteCanvas.SetActive(true);
 }
 
 function KeepPlaying() {
