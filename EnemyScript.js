@@ -28,7 +28,7 @@ function Start () {
 	
 	//--get reference to levelController object so we can call local functions
 	levelController = GameObject.Find("LevelController").GetComponent(Level1Script);
-	
+		
 	player = GameObject.Find("Player");
 	target = player.transform;	
 	
@@ -64,6 +64,8 @@ function hit(damageAmt : int){
 		//--die
 		enemyMovementScript.SendMessage("stopMoving");
 		isAlive = false;
+		
+		GameObject.Find("Main Camera").GetComponent.<CameraTrackPlayer>().SwitchToTarget("EnemyTurd");
 		
 		levelController.SendMessage("GoalCompleted");
 		

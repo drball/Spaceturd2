@@ -1,6 +1,6 @@
 ﻿#pragma strict
-public var speed : float = 40;
-public var rotationSpeed : float = 2.5;
+private var speed : float = 40;
+private var rotationSpeed : float = 2.5;
 
 private var nextFire : float;
 private var ThrustParticle : GameObject;
@@ -9,10 +9,7 @@ private var ParticleTrail : GameObject;
 private var fireFrom : GameObject;
 private var gameController : GameControllerScript;
 
-//private var Thrust : GameObject;
-
-public var bulletDelay : float;
-//public var bulletType : GameObject;
+private var bulletDelay : float = 0.4;
 
 function Start () {
 	
@@ -34,10 +31,6 @@ function Start () {
 
 	// Accelerate out of the last portal
 	GetComponent.<Rigidbody>().AddRelativeForce(Vector3.forward * (speed/2), ForceMode.Impulse);
-
-}
-
-function Update () {
 
 }
 
@@ -64,7 +57,7 @@ function FixedUpdate () {
 		{
 
 			GetComponent.<Rigidbody>().AddRelativeForce (Vector3.forward * speed);
-			//Thrust.active = true;
+	
 			ParticleTrail.GetComponent.<ParticleSystem>().emissionRate = 100;
 
 		} else if ((moveVertical < 0) || Input.GetKey("s"))
@@ -93,25 +86,5 @@ function FixedUpdate () {
 }
 
 
-function OnTriggerEnter(other: Collider) 
-{
-	if (other.tag == "Helper")
-	{
-	    Debug.Log("Have hit a helper = "+other.name);
-	    return;
-	}
 
-//	if (other.tag == "Portal")
-//	{
-//	  
-//	    gameController.ShowDialogue("Have hit portal yeah!");
-//	    
-//	    //--get a variable from the portal for where to go next
-//	    Debug.Log("going to.... ");
-//	    
-//	    //--make portal animate
-//	    return;
-//	}
-
-}
 

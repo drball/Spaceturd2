@@ -7,11 +7,7 @@ var speed : float = 0.1;
 
 function Start () { 
 	var pointA = transform.localPosition; 
-	
-	Debug.Log("current pos = "+transform.position.x);
-	Debug.Log("current pos = "+transform.position.y);
-	Debug.Log("current pos = "+transform.position.z);
-	
+		
 	while (true) { 
 		yield MoveObject(transform, pointA, pointB, 3.0); 
 		yield MoveObject(transform, pointB, pointA, 3.0); 
