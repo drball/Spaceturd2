@@ -4,8 +4,9 @@ import UnityEngine.UI;
 static var isPaused : boolean = false;
 private var DialogueCanvas : Canvas;
 private var DialogueTextbox : Text;
+private var scoreText : Text;
 
-public var score = 50;
+public var score = 0;
 
 function Start () {
 		
@@ -13,8 +14,9 @@ function Start () {
 	var DialogueCanvas : Canvas = Instantiate(
 		Resources.Load("DialogueCanvas", Canvas));
 
-	 DialogueCanvas.GetComponent(Canvas).enabled = false;
-
+	DialogueCanvas.GetComponent(Canvas).enabled = false;
+	
+	scoreText = GameObject.Find("ScoreText").GetComponent.<Text>();
 }
 
 function Update () {
@@ -84,6 +86,7 @@ function ShowPlayerDialogue (dialogueText : String) {
 
 function IncreaseScore(amt : int) {
 	score += amt;
+	
 	Debug.Log("Score is "+score);
 }
 

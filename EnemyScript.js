@@ -23,8 +23,7 @@ private var levelController : Component;
 function Start () {
 
 	//--get reference to gamecomtroller object so we can call functions
-	var gameControllerObj : GameObject = GameObject.Find("GameController");
-	gameController = gameControllerObj.GetComponent(GameControllerScript);
+	gameController = GameObject.Find("GameController").GetComponent.<GameControllerScript>();
 	
 	//--get reference to levelController object so we can call local functions
 	levelController = GameObject.Find("LevelController").GetComponent(Level1Script);

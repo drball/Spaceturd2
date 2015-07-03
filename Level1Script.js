@@ -11,8 +11,7 @@ private var scoreField : Text;
 function Start () {
 
 	//--get reference to gameController object so we can call functions
-	var gameControllerObj : GameObject = GameObject.Find("GameController");
-	gameController = gameControllerObj.GetComponent(GameControllerScript);
+	gameController = GameObject.Find("GameController").GetComponent.<GameControllerScript>();
 	
 	goalCompleteCanvas = GameObject.Find("GoalCompleteCanvas");
 
@@ -84,8 +83,9 @@ function GoalCompleted () {
 	yield WaitForSeconds (3);
 	
 	//--show the end screen ui
-	scoreField.text = gameController.score.ToString();
 	Debug.Log("score = "+gameController.score);
+	scoreField.text = gameController.score.ToString();
+	
 	goalCompleteCanvas.SetActive(true);
 }
 

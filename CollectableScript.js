@@ -43,7 +43,6 @@ function OnTriggerEnter(other: Collider)
 	        yield WaitForSeconds(0.1);
 	        vfxObj.GetComponent.<Renderer>().enabled = !vfxObj.GetComponent.<Renderer>().enabled;
 	        blinkingAmt++;
-	        Debug.Log("blinking = "+blinkingAmt);
 	    }
 	    vfxObj.GetComponent.<Renderer>().enabled = true;
 	    isCollectable = true;
