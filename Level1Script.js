@@ -6,6 +6,7 @@ private var enemy : GameObject;
 private var enemyScript : Component;
 private var timesPlayed : int = 0;
 private var cameraScript : CameraTrackPlayer;
+private var scoreField : Text;
 
 function Start () {
 
@@ -14,9 +15,9 @@ function Start () {
 	gameController = gameControllerObj.GetComponent(GameControllerScript);
 	
 	goalCompleteCanvas = GameObject.Find("GoalCompleteCanvas");
-	//goalCompleteCanvas.GetComponent(Canvas).enabled = false;
-	goalCompleteCanvas.SetActive(false);
 
+	scoreField = GameObject.Find("ScoreField").GetComponent.<Text>();
+	
 	enemy = GameObject.Find("EnemyTurd");
 	enemyScript = enemy.GetComponent(EnemyScript);
 	
@@ -29,6 +30,7 @@ function Start () {
 
 function StartGame() {
 	goalCompleteCanvas.SetActive(false);
+	scoreField.text = "000";
 	
 	//--activate the enemy
 	enemy.SetActive(true);
@@ -82,7 +84,8 @@ function GoalCompleted () {
 	yield WaitForSeconds (3);
 	
 	//--show the end screen ui
-	//goalCompleteCanvas.GetComponent(Canvas).enabled = true;
+	scoreField.text = gameController.score.ToString();
+	Debug.Log("score = "+gameController.score);
 	goalCompleteCanvas.SetActive(true);
 }
 

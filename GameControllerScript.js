@@ -5,7 +5,7 @@ static var isPaused : boolean = false;
 private var DialogueCanvas : Canvas;
 private var DialogueTextbox : Text;
 
-public var score = 0;
+public var score = 50;
 
 function Start () {
 		
