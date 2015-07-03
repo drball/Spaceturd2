@@ -86,7 +86,7 @@ function ShowPlayerDialogue (dialogueText : String) {
 
 function IncreaseScore(amt : int) {
 	score += amt;
-	
-	Debug.Log("Score is "+score);
+	scoreText.text = score.ToString();
+	//Debug.Log("Score is "+score);
 }
 
