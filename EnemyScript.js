@@ -167,6 +167,8 @@ function Restart(){
 
 function SpawnDropping () {
 
-	Instantiate(Resources.Load("Dropping", GameObject), transform.position, transform.rotation);
+	if (isAlive) {
+		Instantiate(Resources.Load("Dropping", GameObject), transform.position, transform.rotation);
+	}
 
 }

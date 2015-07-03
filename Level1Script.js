@@ -20,6 +20,7 @@ function Start () {
 	enemy = GameObject.Find("EnemyTurd");
 	enemyScript = enemy.GetComponent(EnemyScript);
 	
+	//--get camera so we can focus on enemy at end
 	cameraScript = GameObject.Find("Main Camera").GetComponent.<CameraTrackPlayer>();
 	
 	StartGame();
@@ -27,7 +28,6 @@ function Start () {
 }
 
 function StartGame() {
-	//goalCompleteCanvas.GetComponent(Canvas).enabled = false;
 	goalCompleteCanvas.SetActive(false);
 	
 	//--activate the enemy
@@ -36,6 +36,13 @@ function StartGame() {
 	
 	//--reset the camera script
 	cameraScript.Start();
+	
+	//--clear anything spawned
+	var enemyDroppings =  GameObject.FindGameObjectsWithTag ("EnemyDropping");
+ 
+    for(var i = 0 ; i < enemyDroppings.length ; i ++) {
+    	Destroy(enemyDroppings[i]);
+ 	}
 	
 	yield WaitForSeconds (2);
 	
