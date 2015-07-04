@@ -4,7 +4,7 @@ public var minPlayerDistance : int;
 public var startHealth : int = 2;
 public var health : int = startHealth;
 
-private var player : GameObject;
+//private var player : GameObject;
 private var vfx : GameObject;
 
 private var restartPoint : Transform;
@@ -28,12 +28,12 @@ function Start () {
 	//--get reference to levelController object so we can call local functions
 	levelController = GameObject.Find("LevelController").GetComponent(Level1Script);
 		
-	player = GameObject.Find("Player");
-	target = player.transform;	
+	//player = GameObject.Find("Player");
+	//target = player.transform;	
 	
 	restartPoint = GameObject.Find("EnemySpawnHelper").transform;
 	
-	vfx = GameObject.Find("EnemyVFX");
+	vfx = GameObject.Find("EnemyVFX"); //--ref this to hide it later
 	
 	enemyMovementScript = GetComponent(MoveToWaypoint);
 	
@@ -44,7 +44,7 @@ function Start () {
 
 function Update () {
 	//--calculate distance to target (player)
-	distanceToPlayer = Vector3.Distance(target.position, transform.position);
+	//distanceToPlayer = Vector3.Distance(target.position, transform.position);
 
 }
 
@@ -159,7 +159,7 @@ function Restart(){
 	gameObject.transform.rotation = restartPoint.rotation;
 	isAlive = true;
 	health = startHealth;
-	enemyMovementScript.SendMessage("startMoving");
+	enemyMovementScript.Start();
 }
 
 

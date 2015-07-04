@@ -23,13 +23,17 @@ function Start () {
 	//--get camera so we can focus on enemy at end
 	cameraScript = GameObject.Find("Main Camera").GetComponent.<CameraTrackPlayer>();
 	
-	StartGame();
+	StartLevel();
+	
+	//--begin the game - these variables are only set ONCE
+	gameController.UpdateScore(50);
 	
 }
 
-function StartGame() {
+function StartLevel() {
+	//--this level can reset, load this again if it does
 	goalCompleteCanvas.SetActive(false);
-	scoreField.text = "000";
+	scoreField.text = "000"; //--the score field shown at the end
 	
 	//--activate the enemy
 	enemy.SetActive(true);
@@ -93,7 +97,7 @@ function KeepPlaying() {
 	//--when button pressed
 	Debug.Log("Just keep playing");
 	
-	StartGame();
+	StartLevel();
 }
 
 function ToMenu() {

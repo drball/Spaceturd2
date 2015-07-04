@@ -7,7 +7,7 @@ public var target4 : GameObject;
 public var target5 : GameObject;
 public var target6 : GameObject;
 
-public var moveSpeed : float = 1.5f;
+public var moveSpeed : float = 1.1f;
 public var rotateSpeed : float = 6.0f;
 public var distanceToTarget : float;
 public var currentTargetNum : int = 1;
@@ -16,7 +16,11 @@ private var currentTarget : GameObject;
 static var moving : boolean = true;
 
 function Start () {
+
+	Debug.Log("start again right?");
+	currentTargetNum = 1;
 	currentTarget = target1;
+	startMoving();
 }
 
 function Update () {

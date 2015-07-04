@@ -5,8 +5,8 @@ static var isPaused : boolean = false;
 private var DialogueCanvas : Canvas;
 private var DialogueTextbox : Text;
 private var scoreText : Text;
+public var score : int = 0;
 
-public var score = 0;
 
 function Start () {
 		
@@ -16,7 +16,15 @@ function Start () {
 
 	DialogueCanvas.GetComponent(Canvas).enabled = false;
 	
+	Debug.Log("starting. score = "+score);
 	scoreText = GameObject.Find("ScoreText").GetComponent.<Text>();
+	
+	//--load the score if there is one
+	if(PlayerPrefs.GetInt("score")){
+		score = PlayerPrefs.GetInt("score");
+		Debug.Log("loaded existing score");
+	}
+	scoreText.text = score.ToString();
 }
 
 function Update () {
@@ -44,7 +52,10 @@ function Update () {
 		//PausedCanvas.enabled = isPaused;
 		
 	}
+	
 }
+
+
 
 function ShowDialogue (dialogueText : String) {
 
@@ -86,7 +97,27 @@ function ShowPlayerDialogue (dialogueText : String) {
 
 function IncreaseScore(amt : int) {
 	score += amt;
+	UpdateScore(score);
+	
+}
+
+function GoToLevel(destination:String){
+
+	//--save score so we can use it next level
+	PlayerPrefs.SetInt("score", score);
+	
+	//--switch level
+	Application.LoadLevel (destination);
+}
+
+function UpdateScore(newScore : int){
+	if(newScore){
+		score = newScore;
+	}
 	scoreText.text = score.ToString();
 	//Debug.Log("Score is "+score);
+	
 }
+
+
 

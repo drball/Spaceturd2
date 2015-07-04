@@ -33,7 +33,7 @@ function OnTriggerEnter(other: Collider)
 	{
 		other.SendMessage("hit",1);
 		
-	} else if(other.tag == "Destructable") 
+	} else if(other.tag == "EnemyDropping") 
 	{
 		other.SendMessage("hit",1);
 	}
