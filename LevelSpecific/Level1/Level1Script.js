@@ -26,7 +26,8 @@ function Start () {
 	StartLevel();
 	
 	//--begin the game - these variables are only set ONCE
-	gameController.UpdateScore(50);
+	gameController.score = 0;
+	gameController.UpdateScore();
 	
 }
 

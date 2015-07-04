@@ -24,7 +24,8 @@ function Start () {
 		score = PlayerPrefs.GetInt("score");
 		Debug.Log("loaded existing score");
 	}
-	scoreText.text = score.ToString();
+	//scoreText.text = score.ToString();
+	UpdateScore();
 }
 
 function Update () {
@@ -97,7 +98,7 @@ function ShowPlayerDialogue (dialogueText : String) {
 
 function IncreaseScore(amt : int) {
 	score += amt;
-	UpdateScore(score);
+	UpdateScore();
 	
 }
 
@@ -110,12 +111,10 @@ function GoToLevel(destination:String){
 	Application.LoadLevel (destination);
 }
 
-function UpdateScore(newScore : int){
-	if(newScore){
-		score = newScore;
-	}
+function UpdateScore(){
+
+	//--updates the score label top right
 	scoreText.text = score.ToString();
-	//Debug.Log("Score is "+score);
 	
 }
 
