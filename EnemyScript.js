@@ -4,19 +4,15 @@ public var minPlayerDistance : int;
 public var startHealth : int = 2;
 public var health : int = startHealth;
 
-//private var player : GameObject;
-private var vfx : GameObject;
 
+private var vfx : GameObject;
 private var restartPoint : Transform;
 private var target : Transform;
-
 private var defaultMat;
 private var isAlive : boolean = true;
 private var distanceToPlayer : float;
-
 private var enemyMovementScript : MoveToWaypoint;
 private var gameController : GameControllerScript;
-
 private var levelController : Component;
 
 
@@ -26,7 +22,7 @@ function Start () {
 	gameController = GameObject.Find("GameController").GetComponent.<GameControllerScript>();
 	
 	//--get reference to levelController object so we can call local functions
-	levelController = GameObject.Find("LevelController").GetComponent(Level1Script);
+	levelController = GameObject.Find("LevelController").GetComponent.<Level1Script>();
 		
 	//player = GameObject.Find("Player");
 	//target = player.transform;	

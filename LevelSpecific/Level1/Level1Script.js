@@ -3,10 +3,13 @@
 private var gameController : GameControllerScript;
 private var goalCompleteCanvas : GameObject;
 private var enemy : GameObject;
+private var enemyVfx : GameObject;
 private var enemyScript : Component;
 private var timesPlayed : int = 0;
 private var cameraScript : CameraTrackPlayer;
 private var scoreField : Text;
+public var escaping = false;
+
 
 function Start () {
 
@@ -19,6 +22,7 @@ function Start () {
 	
 	enemy = GameObject.Find("EnemyTurd");
 	enemyScript = enemy.GetComponent(EnemyScript);
+	enemyVfx = GameObject.Find("EnemyVFX");
 	
 	//--get camera so we can focus on enemy at end
 	cameraScript = GameObject.Find("Main Camera").GetComponent.<CameraTrackPlayer>();
@@ -28,6 +32,8 @@ function Start () {
 	//--begin the game - these variables are only set ONCE
 	gameController.score = 0;
 	gameController.UpdateScore();
+	
+	InvokeRepeating("TimedDialogue", 20, 30);
 	
 }
 
@@ -106,5 +112,12 @@ function ToMenu() {
 	Application.LoadLevel ("menu");
 }
 
+function TimedDialogue(){
 
+	//--if enemy isn't currently visible, show some dialogue
+	if(enemyVfx.GetComponent.<Renderer>().isVisible == false){
+		gameController.ShowDialogue("You need to get to that turd and destroy it, fast!");
+	}
+	
+}
 
