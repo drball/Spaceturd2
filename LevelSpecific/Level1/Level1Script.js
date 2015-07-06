@@ -115,7 +115,7 @@ function ToMenu() {
 function TimedDialogue(){
 
 	//--if enemy isn't currently visible, show some dialogue
-	if(enemyVfx.GetComponent.<Renderer>().isVisible == false){
+	if((enemyVfx.GetComponent.<Renderer>().isVisible == false) && escaping != true){
 		gameController.ShowDialogue("You need to get to that turd and destroy it, fast!");
 	}
 	
