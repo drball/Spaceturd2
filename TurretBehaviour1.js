@@ -2,14 +2,12 @@
 
 
   
-public var lookAtDistance : float = 25.0;
-public var attackRange : float = 20.0;
-public var moveSpeed = 5.0;
-public var damping = 6.0;
+public var lookAtDistance : float = 6.5;
+public var attackRange : float = 5;
+public var moveSpeed = 3.0;
 public var distance : float;
-public var minDistance : float = 10;
 
-private var isItAttacking = false;
+private var isAttacking = false;
 private var player : GameObject;
 private var target : Transform;  
 
@@ -23,38 +21,28 @@ function Update ()
 {
     distance = Vector3.Distance(target.position, transform.position);
  
-    if(distance < lookAtDistance)
+    if(distance <= lookAtDistance)
     {
-	    isItAttacking = false;
+	    
 	    GetComponent.<Renderer>().material.color = Color.yellow;
 	    lookAtTarget();
+	    
+	    if((distance <= attackRange)){
+	    	GetComponent.<Renderer>().material.color = Color.red;
+	    	isAttacking = true;
+	    }
+	    
 	
-    }   
-    if(distance > lookAtDistance)
-    {
+    } else {
     	GetComponent.<Renderer>().material.color = Color.green; 
-    }
-    if((distance < attackRange) && (distance >= minDistance))
-    {
-		moveToTarget ();
-    }
-    if(isItAttacking)
-    {
-		GetComponent.<Renderer>().material.color = Color.red;
-    }
+    	isAttacking = false;
+	}   
+
 }
  
  
 function lookAtTarget ()
 {
 	var rotation = Quaternion.LookRotation(target.position - transform.position);
-	transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * damping);
-}
- 
-function moveToTarget ()
-{
-    isItAttacking = true;
-    GetComponent.<Renderer>().material.color = Color.red;
- 
-    transform.Translate(Vector3.forward * moveSpeed *Time.deltaTime);
+	transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * moveSpeed);
 }
