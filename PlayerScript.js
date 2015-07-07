@@ -14,7 +14,7 @@ private var bulletDelay : float = 0.4;
 function Start () {
 	
 
-	fireFrom = GameObject.Find("FireFrom");
+	fireFrom = transform.Find("FireFrom").gameObject; //--find child object
 	
 	//--find gameController so we can call functions
 	gameController = GameObject.Find("GameController").GetComponent.<GameControllerScript>();

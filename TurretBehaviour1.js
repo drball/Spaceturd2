@@ -9,32 +9,38 @@ public var distance : float;
 
 private var isAttacking = false;
 private var player : GameObject;
-private var target : Transform;  
+private var target : GameObject;
+private var turretVfx : GameObject;
+private var fireFrom : GameObject;
 
 function Start() {
 	player = GameObject.Find("Player");
+	turretVfx = GameObject.Find("TurretVFX");
+	fireFrom = transform.Find("FireFrom").gameObject;
 	
-	target = player.transform;
+	target = player;
+	
+	InvokeRepeating("fire",1,3);
 }
  
 function Update () 
 {
-    distance = Vector3.Distance(target.position, transform.position);
+    distance = Vector3.Distance(target.transform.position, transform.position);
  
     if(distance <= lookAtDistance)
     {
 	    
-	    GetComponent.<Renderer>().material.color = Color.yellow;
+	    
 	    lookAtTarget();
+	    turretVfx.GetComponent.<Renderer>().material.color = Color.yellow;
 	    
 	    if((distance <= attackRange)){
-	    	GetComponent.<Renderer>().material.color = Color.red;
+	    	turretVfx.GetComponent.<Renderer>().material.color = Color.red;
 	    	isAttacking = true;
 	    }
-	    
 	
     } else {
-    	GetComponent.<Renderer>().material.color = Color.green; 
+    	turretVfx.GetComponent.<Renderer>().material.color = Color.green; 
     	isAttacking = false;
 	}   
 
@@ -43,6 +49,13 @@ function Update ()
  
 function lookAtTarget ()
 {
-	var rotation = Quaternion.LookRotation(target.position - transform.position);
+	var rotation = Quaternion.LookRotation(target.transform.position - transform.position);
 	transform.rotation = Quaternion.Slerp(transform.rotation, rotation, Time.deltaTime * moveSpeed);
+}
+
+function fire() {
+	Debug.Log("fire");
+	var bulletInstance : GameObject = Instantiate(Resources.Load("Bullet", GameObject),
+		Vector3(fireFrom.transform.position.x,fireFrom.transform.position.y,fireFrom.transform.position.z), 
+		transform.rotation);
 }
