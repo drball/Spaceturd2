@@ -14,11 +14,10 @@ private var turretVfx : GameObject;
 private var fireFrom : GameObject;
 
 function Start() {
-	player = GameObject.Find("Player");
+	target = GameObject.Find("Player");
 	turretVfx = GameObject.Find("TurretVFX");
 	fireFrom = transform.Find("FireFrom").gameObject;
 	
-	target = player;
 	
 	InvokeRepeating("fire",1,3);
 }
