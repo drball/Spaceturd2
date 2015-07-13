@@ -54,7 +54,7 @@ function lookAtTarget ()
 
 function fire() {
 	Debug.Log("fire");
-	var bulletInstance : GameObject = Instantiate(Resources.Load("Bullet", GameObject),
+	var bulletInstance : GameObject = Instantiate(Resources.Load("EnemyBullet", GameObject),
 		Vector3(fireFrom.transform.position.x,fireFrom.transform.position.y,fireFrom.transform.position.z), 
-		transform.rotation);
+		fireFrom.transform.rotation);
 }
