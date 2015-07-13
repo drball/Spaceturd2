@@ -6,6 +6,7 @@ public var lookAtDistance : float = 6.5;
 public var attackRange : float = 5;
 public var moveSpeed = 3.0;
 public var distance : float;
+public var fireRate : float = 2;
 
 private var isAttacking = false;
 private var player : GameObject;
@@ -19,7 +20,7 @@ function Start() {
 	fireFrom = transform.Find("FireFrom").gameObject;
 	
 	
-	InvokeRepeating("fire",1,3);
+	InvokeRepeating("fire",1,fireRate);
 }
  
 function Update () 
