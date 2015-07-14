@@ -2,11 +2,11 @@
 
 
   
-public var lookAtDistance : float = 6.5;
-public var attackRange : float = 5;
+public var lookAtDistance : float = 6.6;
+public var attackRange : float = 6.3;
 public var moveSpeed = 3.0;
 public var distance : float;
-public var fireRate : float = 2;
+public var fireRate : float = 1.8;
 
 private var isAttacking = false;
 private var player : GameObject;
@@ -20,7 +20,7 @@ function Start() {
 	fireFrom = transform.Find("FireFrom").gameObject;
 	
 	
-	InvokeRepeating("fire",1,fireRate);
+	InvokeRepeating("fire",0,fireRate);
 }
  
 function Update () 
@@ -30,17 +30,18 @@ function Update ()
     if(distance <= lookAtDistance)
     {
 	    
-	    
+	    //Debug.Log("look. distance = "+distance+" should be less than "+lookAtDistance);
 	    lookAtTarget();
-	    turretVfx.GetComponent.<Renderer>().material.color = Color.yellow;
+	    //turretVfx.GetComponent.<Renderer>().material.color = Color.yellow;
 	    
 	    if((distance <= attackRange)){
-	    	turretVfx.GetComponent.<Renderer>().material.color = Color.red;
+	    	//Debug.Log("attack. distance = "+distance+" should be less than "+attackRange);
+	    	//turretVfx.GetComponent.<Renderer>().material.color = Color.red;
 	    	isAttacking = true;
 	    }
 	
     } else {
-    	turretVfx.GetComponent.<Renderer>().material.color = Color.green; 
+    	//turretVfx.GetComponent.<Renderer>().material.color = Color.green; 
     	isAttacking = false;
 	}   
 
@@ -54,8 +55,12 @@ function lookAtTarget ()
 }
 
 function fire() {
-	Debug.Log("fire");
-	var bulletInstance : GameObject = Instantiate(Resources.Load("EnemyBullet", GameObject),
-		Vector3(fireFrom.transform.position.x,fireFrom.transform.position.y,fireFrom.transform.position.z), 
-		fireFrom.transform.rotation);
+	
+	//--this is invoked every few seconds
+	if (isAttacking) {
+		//Debug.Log("fire");
+		var bulletInstance : GameObject = Instantiate(Resources.Load("EnemyBullet", GameObject),
+			Vector3(fireFrom.transform.position.x,fireFrom.transform.position.y,fireFrom.transform.position.z), 
+			fireFrom.transform.rotation);
+	}
 }
