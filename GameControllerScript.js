@@ -31,27 +31,15 @@ function Start () {
 function Update () {
 	if (Input.GetKeyDown ("p"))
 	{
-		Debug.Log("pressed");
-		
-		if(isPaused == false)
-		{
-			isPaused = true;
-			
+		if(isPaused == false) {
 			var PausedCanvasInstance : Canvas = Instantiate(Resources.Load("PausedCanvas", Canvas));
-			
-			Debug.Log("setting to true");
+			PauseGame(true);
 			
 		} else {
 			Destroy(GameObject.Find("PausedCanvas(Clone)"));
-			
-			isPaused = false;
-			
-			Debug.Log("setting to false");
-			
-		}
-		
-		//PausedCanvas.enabled = isPaused;
-		
+			PauseGame(false);
+				
+		}	
 	}
 	
 }
@@ -118,5 +106,18 @@ function UpdateScore(){
 	
 }
 
+
+function PauseGame (action : boolean) {
+
+	if((action == true) && isPaused != true){
+		Debug.Log("pause game");
+		isPaused = true;
+		Time.timeScale = 0.0;
+	} else {
+		Debug.Log("unpause");
+		isPaused = false;
+		Time.timeScale = 1.0;
+	}
+}
 
 

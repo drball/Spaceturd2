@@ -8,6 +8,9 @@ private var enemyScript : Component;
 private var timesPlayed : int = 0;
 private var cameraScript : CameraTrackPlayer;
 private var scoreField : Text;
+private var timeField : Text;
+private var elapsedSeconds : int = 0;
+
 public var escaping = false;
 
 
@@ -19,6 +22,7 @@ function Start () {
 	goalCompleteCanvas = GameObject.Find("GoalCompleteCanvas");
 
 	scoreField = GameObject.Find("ScoreField").GetComponent.<Text>();
+	timeField = GameObject.Find("TimeField").GetComponent.<Text>();
 	
 	enemy = GameObject.Find("EnemyTurd");
 	enemyScript = enemy.GetComponent(EnemyScript);
@@ -33,7 +37,9 @@ function Start () {
 	gameController.score = 0;
 	gameController.UpdateScore();
 	
-	InvokeRepeating("TimedDialogue", 20, 30);
+	InvokeRepeating("TimedDialogue", 20,30);
+	
+	InvokeRepeating("LevelTimer",1,1);
 	
 }
 
@@ -75,6 +81,8 @@ function StartLevel() {
 
 	}
 	
+	elapsedSeconds = 0;
+	
 }
 
 function Update () {
@@ -97,6 +105,11 @@ function GoalCompleted () {
 	Debug.Log("score = "+gameController.score);
 	scoreField.text = gameController.score.ToString();
 	
+	var minutes = Mathf.FloorToInt(elapsedSeconds / 60F);
+	var seconds = Mathf.FloorToInt(elapsedSeconds - minutes * 60);
+
+	timeField.text = String.Format("{0:0}:{1:00}", minutes, seconds); 
+	
 	goalCompleteCanvas.SetActive(true);
 }
 
@@ -115,9 +128,14 @@ function ToMenu() {
 function TimedDialogue(){
 
 	//--if enemy isn't currently visible, show some dialogue
-	if((enemyVfx.GetComponent.<Renderer>().isVisible == false) && escaping != true){
+	if((enemyVfx.GetComponent.<Renderer>().isVisible == false) && (escaping != true) && enemy.active ){
 		gameController.ShowDialogue("You need to get to that turd and destroy it, fast!");
 	}
 	
+}
+
+function LevelTimer(){
+	//--increase counter each second
+	elapsedSeconds++;
 }
 

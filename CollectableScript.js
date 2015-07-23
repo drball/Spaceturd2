@@ -2,14 +2,16 @@
 
 private var gameController : GameControllerScript;
 private var isCollectable : boolean = true;
+
 var vfxObj : GameObject;
+var collectionSfx : AudioSource;
 
 
 function Start () {
 	//--find gameController so we can call functions
 	gameController = GameObject.Find("GameController").GetComponent.<GameControllerScript>();
 	
-
+	collectionSfx = GetComponent.<AudioSource>();
 
 }
 
@@ -19,6 +21,8 @@ function OnTriggerEnter(other: Collider)
 
 	if (other.tag == "Player" && isCollectable)
 	{
+	    collectionSfx.Play();
+	    
 	    gameController.IncreaseScore(1);
 	    //vfxObj.SetActive(false);
 	    
@@ -28,6 +32,7 @@ function OnTriggerEnter(other: Collider)
 			
 		Destroy(sparkInstance,1);
 		
+		//--hide for now 
 	    vfxObj.SetActive(false);
 	    isCollectable = false;
 	    
