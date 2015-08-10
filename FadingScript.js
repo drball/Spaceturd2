@@ -1,7 +1,11 @@
 ﻿#pragma strict
 
+/* ====================================================
+Fades a solid background out on load, then in when called 
+======================================================= */
+
 var fadeTexture : Texture2D;
-private var fadeSpeed = 0.5;
+public var fadeSpeed = 0.5;
 private var drawDepth = -1000;
 
 private var alpha = 1.0; 

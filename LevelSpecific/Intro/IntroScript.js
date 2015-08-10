@@ -1,5 +1,8 @@
 ﻿#pragma strict
 
+/* ====================================================
+Load a level when any key pressed
+======================================================= */
 
 function FixedUpdate () {
 

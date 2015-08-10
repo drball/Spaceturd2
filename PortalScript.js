@@ -1,4 +1,9 @@
 ﻿#pragma strict
+
+/* ====================================================
+Spins a portal when it's touched, then loads new destination
+======================================================= */
+
 public var destination : String;
 public var activePortal : boolean = true;
 
@@ -23,7 +28,7 @@ function Start () {
 }
 
 function OnTriggerEnter(other: Collider) {
-	//--if player going throuhg portal
+	//--if player going through portal
 	if ((other.tag == "Player") && (Time.time > 2) && (activePortal == true)) {
 		Debug.Log("Going to "+destination);
 

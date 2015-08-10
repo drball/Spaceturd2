@@ -1,5 +1,10 @@
 ﻿#pragma strict
-public var amtOfSeconds : float = 1;
+
+/* ====================================================
+Hide something initially, then show it some time later
+======================================================= */
+
+public var amtOfSeconds : float = 1; //--time to wait before appearing
 
 function Start () {
 	gameObject.SetActive(false);

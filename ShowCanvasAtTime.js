@@ -1,6 +1,8 @@
 ﻿#pragma strict
 
-//--for showing a canvas (maybe instructional text) which can be dismissed by pressing anything
+/* ========================================================================================
+for showing a canvas (maybe instructional text) which can be dismissed by pressing anything
+=========================================================================================== */
 
 public var amtOfSeconds : float = 0.5;
 public var secondsOnScreen : int = 1; //--how many seconds before we can click this off

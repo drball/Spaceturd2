@@ -1,5 +1,9 @@
 ﻿#pragma strict
 
+/* ====================================================
+For a collectable object which comes back later
+======================================================= */
+
 private var gameController : GameControllerScript;
 private var isCollectable : boolean = true;
 
