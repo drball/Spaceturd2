@@ -14,7 +14,7 @@ private var distanceToPlayer : float;
 private var enemyMovementScript : MoveToWaypoint;
 private var gameController : GameControllerScript;
 private var levelController : Component;
-
+private var deathSound : AudioSource;
 
 function Start () {
 
@@ -36,6 +36,8 @@ function Start () {
 	defaultMat = vfx.GetComponent.<Renderer>().material.color;
 	
 	InvokeRepeating("SpawnDropping", 1, 4); //--spawn a new dropping every few seconds
+	
+	deathSound = GetComponent.<AudioSource>();
 }
 
 function Update () {
@@ -138,6 +140,8 @@ function hit(damageAmt : int){
 		Destroy(exp11);
 		Destroy(exp12,1);
 		Destroy(exp13,1);
+		
+		deathSound.Play();
 		
 		yield WaitForSeconds (.25);
 		
