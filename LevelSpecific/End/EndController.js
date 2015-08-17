@@ -26,6 +26,16 @@ function FixedUpdate () {
 	}
 }
 
+function Update () {
+
+	if(Input.GetKeyDown(KeyCode.Escape) == true)
+	{
+		Application.LoadLevel ("menu");
+	}
+}
+
+
+
 function HideScrollingText() {
 
 	while(scrollingText.GetComponent.<CanvasGroup>().alpha > 0){

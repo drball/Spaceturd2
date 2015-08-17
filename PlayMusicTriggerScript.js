@@ -39,6 +39,6 @@ function ReplaceMusic (){
     
     //--plays new music
     audioController.clip = newMusic;
-    audioController.volume = 1;
+    audioController.volume = 0.4;
     audioController.Play();
 }

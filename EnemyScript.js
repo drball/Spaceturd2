@@ -64,6 +64,7 @@ function hit(damageAmt : int){
 		
 		GameObject.Find("Main Camera").GetComponent.<CameraTrackPlayer>().SwitchToTarget("EnemyTurd");
 		
+		gameController.IncreaseScore(10);
 		levelController.SendMessage("GoalCompleted");
 		
 		var exp1helper : GameObject = GameObject.Find("Exp1Helper");

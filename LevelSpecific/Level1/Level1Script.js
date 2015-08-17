@@ -31,11 +31,11 @@ function Start () {
 	//--get camera so we can focus on enemy at end
 	cameraScript = GameObject.Find("Main Camera").GetComponent.<CameraTrackPlayer>();
 	
-	StartLevel();
-	
 	//--begin the game - these variables are only set ONCE
-	gameController.score = 0;
-	gameController.UpdateScore();
+	//gameController.score = 0;
+	//gameController.UpdateScore();
+	
+	StartLevel();
 	
 	InvokeRepeating("TimedDialogue", 20,30);
 	
@@ -45,6 +45,8 @@ function Start () {
 
 function StartLevel() {
 	//--this level can reset, load this again if it does
+	gameController.score = 0;
+	
 	goalCompleteCanvas.SetActive(false);
 	scoreField.text = "000"; //--the score field shown at the end
 	
@@ -61,23 +63,31 @@ function StartLevel() {
     for(var i = 0 ; i < enemyDroppings.length ; i ++) {
     	Destroy(enemyDroppings[i]);
  	}
+ 	
+ 	Debug.Log("times played "+timesPlayed);
 	
 	yield WaitForSeconds (2);
 	
 	if (timesPlayed == 0){
 		gameController.ShowDialogue("We believe the giant turd came from the galactic rectum of Annus IX. God speed Major Plumber!");
 
-	} else if (timesPlayed > 1){
+	} else if (timesPlayed == 1){
+	
 		gameController.ShowDialogue("There's another giant turd on the rampage. Sorry Major, you have the crappest job in the world.");
 
-	} else if (timesPlayed > 2){
+	} else if (timesPlayed == 2){
+	
 		gameController.ShowDialogue("Another giant turd has arrived. Do your thing Major!");
-
+		yield WaitForSeconds (3);
 		gameController.ShowPlayerDialogue("I'm getting sick of this shitty job. If only there was a way to escape...");
+
+	} else if (timesPlayed == 3){
+
+		gameController.ShowPlayerDialogue("What a shit day I'm having. I want to get out of here.");
 
 	} else if (timesPlayed > 3){
 
-		gameController.ShowPlayerDialogue("What a shit day I'm having. I want to get out of here.");
+		gameController.ShowPlayerDialogue("I want to escape from this shitty job.");
 
 	}
 	
@@ -116,6 +126,9 @@ function GoalCompleted () {
 function KeepPlaying() {
 	//--when button pressed
 	Debug.Log("Just keep playing");
+	
+	gameController.score = 0;
+	gameController.UpdateScore();
 	
 	StartLevel();
 }

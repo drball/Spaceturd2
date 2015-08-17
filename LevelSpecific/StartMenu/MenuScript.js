@@ -1,6 +1,6 @@
 ﻿#pragma strict
 
-//@script ExecuteInEditMode;
+@script ExecuteInEditMode;
 private var btnStart : GameObject;
 
 
@@ -12,6 +12,11 @@ function Start () {
 
 
 function Update () {
+
+	if(Input.GetKeyDown(KeyCode.Escape) == true)
+	{
+		Application.Quit();
+	}
 
 }
 

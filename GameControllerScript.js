@@ -9,6 +9,8 @@ public var score : int = 0;
 
 
 function Start () {
+
+
 		
 	//--create the dialogue, but initially disable it
 	var DialogueCanvas : Canvas = Instantiate(
@@ -40,6 +42,11 @@ function Update () {
 			PauseGame(false);
 				
 		}	
+	}
+	
+	if(Input.GetKeyDown(KeyCode.Escape) == true)
+	{
+		Application.LoadLevel ("menu");
 	}
 	
 }
