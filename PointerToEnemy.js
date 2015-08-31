@@ -1,35 +1,42 @@
 ﻿#pragma strict
 
-var target : GameObject;
-var myCamera : Camera;
-var directionArrow : Texture;
-var mySprite : GameObject;
 
-function Start () {
-	
+var target : GameObject; // GameObject to point to
+var arrow : GameObject;
+var fadeSpeed : float = .05;
+var distanceToTarget : float;
+
+private var amt : float = 0;
+private var angle : float;
+  
+function Start() {
+	arrow.GetComponent.<CanvasGroup>().alpha = 0;
 }
 
-function Update () {
-	if (target != null) {
-		Debug.DrawLine(transform.position, target.transform.position, Color.red);
+function Update() {
+	//Debug.DrawLine(transform.position, target.transform.position, Color.red);
+	
+	//--point arrow to enemy
+	var dir = transform.position - target.transform.position;
+ 	var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+	arrow.transform.rotation = Quaternion.AngleAxis(angle+90, Vector3.forward);
+	
+	//--get distance
+	distanceToTarget = Vector3.Distance(transform.position,target.transform.position);
+
+	if(distanceToTarget < 4.5){
+		//--fade out
+		if(amt > 0){
+			amt -= fadeSpeed;
+		}
+		
+	} else {
+		//--fade in
+		if(amt < 1){
+			amt += fadeSpeed;
+		}
 	}
 	
-//	
-//	var viewPos : Vector3 = myCamera.WorldToScreenPoint(target.transform.position);
-//                       
-//	var angle : float = Mathf.Atan2(viewPos.x - 240, viewPos.y - 160) * Mathf.Rad2Deg;
-//	       
-//	if (viewPos.z < 0)
-//	{
-//	    if (viewPos.x > 240)
-//	        angle = 270;
-//	    else
-//	        angle = 90;
-//	}  
-//	       
-//	GUIUtility.RotateAroundPivot(angle, Vector2(240, 160));
-	//GUI.DrawTexture(Rect(80, 0, 320, 320), directionArrow);
-	mySprite.transform.LookAt(target.transform);
+	arrow.GetComponent.<CanvasGroup>().alpha = amt;
+
 }
-
-
