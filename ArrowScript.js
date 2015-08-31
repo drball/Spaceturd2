@@ -1,38 +1,41 @@
 ﻿#pragma strict
 
-var tex : Texture2D;    // Texture to be rotated
-var target : Transform; // GameObject to point to
-private var pivot : Vector2 = Vector2(Screen.width/2, Screen.height/2);    // Where to place the center of the texture
-var mcamera: Camera;
-private var size: float = 10f;
 
-private var rect : Rect;
+var target : GameObject; // GameObject to point to
+var arrow : GameObject;
+private var angle : float;
+var fadeSpeed : float = .05;
+var amt : float = 0;
+var distanceToTarget : float;
   
 function Start() {
-	rect = new Rect(pivot.x - size * 0.5f, pivot.y - size * 0.5f, 10f, 10f);
-//	mcamera = GetComponent.<Camera>();
+	arrow.GetComponent.<CanvasGroup>().alpha = 0;
 }
 
 function Update() {
-	Debug.DrawLine(transform.position, target.transform.position, Color.red);
+	//Debug.DrawLine(transform.position, target.transform.position, Color.red);
+	
+	//--point arrow to enemy
+	var dir = transform.position - target.transform.position;
+ 	var angle = Mathf.Atan2(dir.z, dir.x) * Mathf.Rad2Deg;
+	arrow.transform.rotation = Quaternion.AngleAxis(angle+90, Vector3.forward);
+	
+	//--get distance
+	distanceToTarget = Vector3.Distance(transform.position,target.transform.position);
+
+	if(distanceToTarget < 4.5){
+		//--fade out
+		if(amt > 0){
+			amt -= fadeSpeed;
+		}
+		
+	} else {
+		//--fade in
+		if(amt < 1){
+			amt += fadeSpeed;
+		}
+	}
+	
+	arrow.GetComponent.<CanvasGroup>().alpha = amt;
+
 }
- 
-  
- function OnGUI() {
- 
- 	
- 
-     if (Event.current.type == EventType.Repaint) {
-         var dir = mcamera.WorldToScreenPoint(target.position);
-         dir.y = Screen.height - dir.y;
-         dir = dir - pivot;  
-         var angle = (Mathf.Atan2(dir.y, dir.x)  * Mathf.Rad2Deg) + 5f;
- 
-//         var matrixBackup = GUI.matrix;
-         GUIUtility.RotateAroundPivot(angle, pivot);
-         GUI.DrawTexture(rect, tex);
-//         GUI.matrix = matrixBackup;
-     }
-     
-     GUI.DrawTexture(Rect(10,10,100,100), tex);
- }
